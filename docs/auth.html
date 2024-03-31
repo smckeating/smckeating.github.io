@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
+    </head>
+
+    <body>
+        <p>Authorization page</p>
+
+        <script>
+            FHIR.oauth2.authorize({
+                'client_id': '',
+                'scope': 'PATIENT.READ, PATIENT.SEARCH, OBSERVATION.READ, OBSERVATION.SEARCH, MEDICATIONREQUEST.READ, MEDICATIONREQUEST.SEARCH, CONDITION.READ, CONDITION.SEARCH, ALLERGYINTOLERANCE.READ, ALLERGYINTOLERANCE.SEARCH',
+                'redirect_uri': 'https://smckeating.github.io/app.html'
+            });
+        </script>
+    </body>
+</html>

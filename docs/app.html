@@ -8,6 +8,12 @@
     </head>
     <body>
        <!-- Sections for displaying health information -->
+       <script>
+        FHIR.oauth2.ready()
+            .then(client => client.request("Patient"))
+            .then(console.log)
+            .catch(console.error);
+        </script>
         <section id="age"></section> <!-- Patient Resource -gender -->
         <section id="gender"></section> <!-- Patient Resource  - birthDate-->
         <section id="language"></section> <!-- Patient Resource - language -->

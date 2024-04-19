@@ -1,13 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>EMS Health App ver 0.1</title>
-        <link rel="stylesheet" href="web.css"> 
+        <link rel="stylesheet" href="web.css">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f8f9fa;
+                padding: 20px;
+                text-align: center;
+            }
+            a {
+                display: inline-block;
+                padding: 15px 30px;
+                background-color: #007bff;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+            a:hover {
+                background-color: #0056b3;
+            }
+        </style> 
     </head>
 
     <body>
+        <h1>EMS Health App</h1>
+        <h2>Version 0.1</h2>
         <a href="auth.html?iss=https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4">
-            Please click to login and authorize use of your Epic patient records.</a>
+            Please click to proceed to your Epic patient authentication page.
+        </a>
     </body>
 </html>

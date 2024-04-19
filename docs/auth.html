@@ -1,14 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>EMS Health App ver 0.1</title>
         <link rel="stylesheet" href="web.css">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f5f5f5;
+            }
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .content {
+                text-align: center;
+            }
+        </style>
         <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
     </head>
 
     <body>
-        <p>Authorization page</p>
+        <div class="container">
+            <div class="header">
+                <h1>EMS Health App</h1>
+                <h2>Version 0.1</h2>
+            </div>
+            <div class="content">
+                <p>Proceeding to the Epic patient authentication page.</p>
+            </div>
+        </div>
 
         <script>
             FHIR.oauth2.authorize({

@@ -32,7 +32,7 @@
     <div v-if="currentTab === 'Demographics'">
       <h2>Demographics</h2>
       <ul class="vertical-list">
-        <li>Name: {{ demographics.name }}</li>
+        <li>Name: {{ patientData ? patientData.name : '' }}</li>
         <li>Age: {{ demographics.age }}</li>
         <li>Gender: {{ demographics.gender }}</li>
         <li>Gender2: {{ patientData ? patientData.gender : '' }}</li>

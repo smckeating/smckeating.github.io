@@ -32,13 +32,14 @@
     <div v-if="currentTab === 'Demographics'">
       <h2>Demographics</h2>
       <ul class="vertical-list">
-        <li>Name: {{ patientData.name }}</li>
-        <li>Age: {{ patientData.birthDate }}</li>
-        <li>Gender: {{ patientData.gender }}</li>
-        <li>Height: {{ patientData.height }}</li>
-        <li>Weight: {{ patientData.weight }}</li>
+        <li>Name: {{ demographics.name }}</li>
+        <li>Age: {{ demographics.age }}</li>
+        <li>Gender: {{ demographics.gender }}</li>
+        <li>Gender2: {{ patientData.gender }}</li>
+        <li>Height: {{ demographics.height }}</li>
+        <li>Weight: {{ demographics.weight }}</li>
         <li>Allergies: {{ demographics.allergies }}</li>
-        <li>Language: {{ patientData.communication.language }}</li>
+        <li>Language: {{ demographics.language }}</li>
       </ul>
     </div>
     <div v-if="currentTab === 'Problems'">
@@ -74,8 +75,6 @@ new Vue({
   data: {
     title: 'EMS Health App',
     currentTab: 'Demographics',
-    patientData: null,
-    allergyData: null,
     demographics: {
       name: 'John Doe',
       age: 35,
@@ -100,6 +99,7 @@ new Vue({
       resp: '16',
       spo2: '98%'
     },
+    patientData: null
   },
   mounted() {
     FHIR.oauth2.ready()

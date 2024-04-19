@@ -106,12 +106,12 @@ new Vue({
   mounted() {
     FHIR.oauth2.ready()
       .then(client => {
-        return Promise.all{[
+        return Promise.all([
             client.request(`Patient/${client.patient.id}`),
             client.request(`Condition?patient=${client.patient.id}`),
             client.request(`MedicationRequest?patient=${client.patient.id}`),
             client.request(`Observation?patient=${client.patient.id}&category=vital-signs`)
-        ]};
+        ]);
       })
       .then(([patientData, conditions, medications, observations]) => {
         this.patientData = patientData;

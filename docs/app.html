@@ -33,9 +33,8 @@
       <h2>Demographics</h2>
       <ul class="vertical-list">
         <li>Name: {{ patientData ? patientData.name : '' }}</li>
-        <li>Age: {{ demographics.age }}</li>
-        <li>Gender: {{ demographics.gender }}</li>
-        <li>Gender2: {{ patientData ? patientData.gender : '' }}</li>
+        <li>Age: {{ patientData ? patientData.birthDate : '' }}</li>
+        <li>Gender: {{ patientData ? patientData.gender : '' }}</li>
         <li>Height: {{ demographics.height }}</li>
         <li>Weight: {{ demographics.weight }}</li>
         <li>Allergies: {{ demographics.allergies }}</li>
@@ -99,16 +98,27 @@ new Vue({
       resp: '16',
       spo2: '98%'
     },
-    patientData: null
+    patientData: null,
+    problems: [],
+    medications: [],
+    vitals: []
   },
   mounted() {
     FHIR.oauth2.ready()
-      .then(client => client.request("Patient"))
-      .then(patientData => {
-          this.patientData = patientData;
-          console.log("Patient Data:", patientData);
-          console.log("client.patient.id:",client.patient.id);
-        })
+      .then(client => {
+        return Promise.all{[
+            client.request(`Patient/${client.patient.id}`),
+            client.request(`Condition?patient=${client.patient.id}`),
+            client.request(`MedicationRequest?patient=${client.patient.id}`),
+            client.request(`Observation?patient=${client.patient.id}&category=vital-signs`)
+        ]};
+      })
+      .then(([patientData, conditions, medications, observations]) => {
+        this.patientData = patientData;
+        this.problems = conditions.entry.map(entry => entry.resource);
+        this.medications = medications.entry.map(entry => entry.resource);
+        this.vitals = observations.entry.map(entry => entry.resource);
+      })
       .catch(error => {
           console.error("Error:", error);
       });

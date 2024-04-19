@@ -104,6 +104,7 @@ new Vue({
   mounted() {
     FHIR.oauth2.ready()
       .then(client => client.request("Patient"))
+      .then(console.log)
       .then(patientData => {
           this.patientData = patientData;
           console.log("Patient Data:", patientData);

@@ -58,6 +58,7 @@
     <div v-if="currentTab === 'Vitals'">
       <h2>Vitals</h2>
       <ul class="vertical-list">
+        <li>Date: {{ vitals.date }}</li>
         <li>Pulse: {{ vitals.pulse }}</li>
         <li>Blood Pressure: {{ vitals.bp }}</li>
         <li>Respiratory Rate: {{ vitals.resp }}</li>

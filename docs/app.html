@@ -6,7 +6,7 @@
         <title>EMS Health App ver 0.1</title>
         <link rel="stylesheet" href="web.css">
         <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
-        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -15,7 +15,7 @@
         FHIR.oauth2.ready()
             .then(client => client.request("Patient"))
             .then(console.log)
-            .then(client => client.request("AllergyIntolerence"))
+            .then(client => client.patient.request("AllergyIntolerence"))
             .then(console.log)
             .catch(console.error);
         </script>

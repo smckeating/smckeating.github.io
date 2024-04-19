@@ -29,6 +29,9 @@
     <button @click="currentTab = 'Vitals'">Vitals</button>
   </nav>
   <div class="content">
+    <div v-if="loading">
+        <p>Loading...</p>
+      </div>
     <div v-if="currentTab === 'Patient'">
       <h2>Patient</h2>
       <ul class="vertical-list">
@@ -73,7 +76,8 @@ new Vue({
   el: '#app',
   data: {
     title: 'EMS Health App',
-    currentTab: 'Demographics',
+    currentTab: 'Patient',
+    loading: true,
     demographics: {
       name: 'John Doe',
       age: 35,
@@ -118,9 +122,11 @@ new Vue({
         this.problems = conditions.entry.map(entry => entry.resource);
         this.medications = medications.entry.map(entry => entry.resource);
         this.vitals = observations.entry.map(entry => entry.resource);
+        this.loading = false;
       })
       .catch(error => {
           console.error("Error:", error);
+          this.loading = false;
       });
   }
 });

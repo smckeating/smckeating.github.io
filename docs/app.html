@@ -28,7 +28,7 @@
     <button @click="currentTab = 'Medications'">Medications</button>
     <button @click="currentTab = 'Vitals'">Vitals</button>
   </nav>
-  <div class="content" v-if!="loading">
+  <div class="content" v-if="!loading">
     <div v-if="currentTab === 'Patient'">
       <h2>Patient</h2>
       <ul class="vertical-list">

@@ -32,14 +32,13 @@
     <div v-if="currentTab === 'Demographics'">
       <h2>Demographics</h2>
       <ul class="vertical-list">
-        <li>Name: {{ demographics.name }}</li>
-        <li>Age: {{ demographics.age }}</li>
-        <li>Gender: {{ demographics.gender }}</li>
-        <li>Gender2: {{ patientData.gender }}</li>
-        <li>Height: {{ demographics.height }}</li>
-        <li>Weight: {{ demographics.weight }}</li>
+        <li>Name: {{ patientData.name }}</li>
+        <li>Age: {{ patientData.birthDate }}</li>
+        <li>Gender: {{ patientData.gender }}</li>
+        <li>Height: {{ patientData.height }}</li>
+        <li>Weight: {{ patientData.weight }}</li>
         <li>Allergies: {{ demographics.allergies }}</li>
-        <li>Language: {{ demographics.language }}</li>
+        <li>Language: {{ patientData.communication.language }}</li>
       </ul>
     </div>
     <div v-if="currentTab === 'Problems'">
@@ -107,11 +106,7 @@ new Vue({
       .then(client => client.request("Patient"))
       .then(patientData => {
           this.patientData = patientData;
-          return FHIR.oauth2.ready().then(client => client.request("AllergyIntolerance"));
-      })
-      .then(allergyData => {
-          this.allergyData = allergyData.entry.map(entry => entry.resource);
-      })
+        })
       .catch(error => {
           console.error("Error:", error);
       });

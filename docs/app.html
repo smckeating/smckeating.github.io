@@ -2,9 +2,12 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>EMS Health App ver 0.1</title>
         <link rel="stylesheet" href="web.css">
         <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     </head>
     <body>
        <!-- Sections for displaying health information -->
@@ -12,14 +15,16 @@
         FHIR.oauth2.ready()
             .then(client => client.request("Patient"))
             .then(console.log)
+            .then(client => client.request("AllergyIntolerence"))
+            .then(console.log)
             .catch(console.error);
         </script>
         <section id="age"></section> <!-- Patient Resource -gender -->
         <section id="gender"></section> <!-- Patient Resource  - birthDate-->
         <section id="language"></section> <!-- Patient Resource - language -->
         <section id="height-weight"></section> <!-- Observation Resource -->       
-        <section id="problems"></section> <!-- Condition Resource -->
         <section id="allergies"></section> <!-- AllergyIntolerence Resource -->
+        <section id="problems"></section> <!-- Condition Resource -->
         <section id="medications"></section> <!-- MedicationRequest Resource -->
         <section id="vitals"></section> <!-- Observation Resource -->
     </body>

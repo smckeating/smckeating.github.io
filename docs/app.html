@@ -107,6 +107,7 @@ new Vue({
       .then(patientData => {
           this.patientData = patientData;
           console.log("Patient Data:", patientData);
+          console.log(client.request("Patient"));
         })
       .catch(error => {
           console.error("Error:", error);

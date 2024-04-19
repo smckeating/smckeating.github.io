@@ -28,10 +28,7 @@
     <button @click="currentTab = 'Medications'">Medications</button>
     <button @click="currentTab = 'Vitals'">Vitals</button>
   </nav>
-  <div class="content">
-    <div v-if="loading">
-        <p>Loading...</p>
-      </div>
+  <div class="content" v-if!="loading">
     <div v-if="currentTab === 'Patient'">
       <h2>Patient</h2>
       <ul class="vertical-list">
@@ -69,6 +66,9 @@
       </ul>
     </div>
   </div>
+  <div v-else>
+    <p>Loading...</p>
+  </div>
 </div>
 
 <script>
@@ -86,21 +86,6 @@ new Vue({
       weight: '180 lbs',
       allergies: 'Peanuts, Pollen',
       language: 'English'
-    },
-    problems: {
-      problem: 'Asthma',
-      onsetDate: '2022-04-15'
-    },
-    medications: {
-      med: 'Albuterol',
-      dose: '2 puffs'
-    },
-    vitals: {
-      pulse: '74',
-      bp:'132/94',
-      temp: '98.4',
-      resp: '16',
-      spo2: '98%'
     },
     patientData: null,
     problems: [],

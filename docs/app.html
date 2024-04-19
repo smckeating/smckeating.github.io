@@ -23,14 +23,14 @@
 <div id="app">
   <h1>{{ title }}</h1>
   <nav>
-    <button @click="currentTab = 'Demographics'">Demographics</button>
+    <button @click="currentTab = 'Patient'">Patient</button>
     <button @click="currentTab = 'Problems'">Problems</button>
     <button @click="currentTab = 'Medications'">Medications</button>
     <button @click="currentTab = 'Vitals'">Vitals</button>
   </nav>
   <div class="content">
-    <div v-if="currentTab === 'Demographics'">
-      <h2>Demographics</h2>
+    <div v-if="currentTab === 'Patient'">
+      <h2>Patient</h2>
       <ul class="vertical-list">
         <li>Name: {{ patientData ? patientData.name : '' }}</li>
         <li>Age: {{ patientData ? patientData.birthDate : '' }}</li>

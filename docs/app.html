@@ -45,8 +45,13 @@
         <li>Gender: {{ patientData ? patientData.gender : '' }}</li>
         <li>Height: {{ demographics.height }}</li>
         <li>Weight: {{ demographics.weight }}</li>
-        <li>Allergies: {{ demographics.allergies }}</li>
         <li>Language: {{ patientData ? patientData.communication.find(lang => lang.preferred === true).language.coding[0].display : ''  }}</li>
+        <li>Allergies:</li>
+        <li v-for="allergy in allergies">
+            <p>Substance:</strong> {{ allergy.substance.coding[0].display }}</p>
+            <p>Reaction:</strong> {{ allergy.reaction.map(reaction => reaction.manifestation[0].coding[0].display).join(', ') }}</p>
+            <p>Last Occurrence:</strong> {{ allergy.lastOccurrence }}</p>
+            <p>Severity:</strong> {{ allergy.severity }}</p>
         <li>{{ patientData }}</li>
         <li>{{ allergies }}</li>
       </ul>

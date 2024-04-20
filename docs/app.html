@@ -71,9 +71,9 @@
         <li>SpO2: {{ vitals.spo2 }}</li>
       </ul>
     </div>
-  </div>
-  <div v-else-if="error">
-    <p>Please (re)launch the app by clicking <a :href="homePageUrl">here</a>.</p>  
+    <div v-if="error">
+      <p>Please (re)launch the app by clicking <a :href="homePageUrl">here</a>.</p>  
+    </div>
   </div>
   <div v-else>
     <p>Loading...</p>

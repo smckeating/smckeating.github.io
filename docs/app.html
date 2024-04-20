@@ -132,7 +132,7 @@ methods: {
         const dob = new Date(birthDate);
         let age = today.getFullYear() - dob.getFullYear();
         const diffMonths = today.getMonth() - dob.getMonth();
-        if (diffMonths < 0 || (diffMonths === 0 && today.getDate() < dob.getDate())) {
+        if (dob.getMonth() > today.getMonth() || (dob.getMonth() === today.getMonth() && today.getDate() < dob.getDate())) {
             age = age - 1;
         }
         return age;

@@ -48,6 +48,7 @@
         <li>Allergies: {{ demographics.allergies }}</li>
         <li>Language: {{ patientData ? patientData.communication.find(lang => lang.preferred === true).language.coding[0].display : ''  }}</li>
         <li>{{ patientData }}</li>
+        <li>{{ allergies }}</li>
       </ul>
     </div>
     <div v-if="currentTab === 'Problems'">
@@ -102,13 +103,15 @@ new Vue({
       .then(client => {
         return Promise.all([
             client.request(`Patient/${client.patient.id}`),
+            client.request(`AllergyIntolerance?patient=${client.patient.id}`),
             client.request(`Condition?patient=${client.patient.id}`),
             client.request(`MedicationRequest?patient=${client.patient.id}`),
             client.request(`Observation?patient=${client.patient.id}&category=vital-signs`)
         ]);
       })
-      .then(([patientData, conditions, medications, observations]) => {
+      .then(([patientData, allergies, conditions, medications, observations]) => {
         this.patientData = patientData;
+        this.allergies = allergies.entry.map(entry => entry.resource);
         this.problems = conditions.entry.map(entry => entry.resource);
         this.medications = medications.entry.map(entry => entry.resource);
         this.vitals = observations.entry.map(entry => entry.resource);

@@ -33,7 +33,10 @@
     <button @click="currentTab = 'Vitals'">Vitals</button>
   </nav>
   </div>
-  <div v-if="!loading">
+  <div class="content" v-if="error">
+    <p>Please (re)launch the app by clicking <a :href="homePageUrl">here</a>.</p>  
+  </div>
+  <div v-else-if="!loading">
     <div v-if="currentTab === 'Patient'">
       <h2>Patient</h2>
       <ul class="vertical-list">
@@ -42,11 +45,8 @@
         <li>Gender: {{ patientData ? patientData.gender : '' }}</li>
         <li>Height: {{ demographics.height }}</li>
         <li>Weight: {{ demographics.weight }}</li>
-        <li>Language: {{ patientData && patientData.communication ? patientData.communication.find(lang => lang.preferred === true).language.coding[0].display : ''  }}</li>
-        <li>Allergies:</li>
-        <li v-for="allergy in allergies">
-            <p>Substance: {{ allergy.substance.coding[0].display }}</p>
-        </li>
+        <li>Allergies: {{ demographics.allergies }}</li>
+        <li>Language: {{ patientData ? patientData.communication.find(lang => lang.preferred === true).language.coding[0].display : ''  }}</li>
         <li>{{ patientData }}</li>
         <li>{{ allergies }}</li>
       </ul>
@@ -69,9 +69,6 @@
         <li>Vitals list: {{ vitals }}</li>
       </ul>
     </div>
-    <div class="content" v-if="error">
-        <p>Please (re)launch the app by clicking <a :href="homePageUrl">here</a>.</p>  
-      </div>
   </div>
   <div v-else>
     <p>Loading...</p>
@@ -97,7 +94,6 @@ new Vue({
       language: 'English'
     },
     patientData: null,
-    allergies: [],
     problems: [],
     medications: [],
     vitals: []

@@ -37,7 +37,7 @@
     <div v-if="currentTab === 'Patient'">
       <h2>Patient</h2>
       <ul class="vertical-list">
-        <li>Name: {{ patientData ? patientData.name : '' }}</li>
+        <li>Name: {{ patientData ? patientData.name.find(name => name.use === 'official').text : '' }}</li>
         <li>Age: {{ patientData ? calculateAge(patientData.birthDate) : '' }}</li>
         <li>Gender: {{ patientData ? patientData.gender : '' }}</li>
         <li>Height: {{ demographics.height }}</li>

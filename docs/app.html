@@ -22,7 +22,7 @@
 
 <div id="app">
   <div v-if="error">
-    <p>Error: No 'state' parameter found. Please (re)launch the app by clicking <a :href="homePageUrl">here</a>.</p>
+    <p>Error encountered.</p>
   </div>
   <div v-else>
   <h1>{{ title }}</h1>
@@ -70,6 +70,9 @@
         <li>Temperature: {{ vitals.temp }}</li>
         <li>SpO2: {{ vitals.spo2 }}</li>
       </ul>
+    </div>
+    <div v-if="error">
+      <p>Please (re)launch the app by clicking <a :href="homePageUrl">here</a>.</p>  
     </div>
   </div>
   <div v-else>

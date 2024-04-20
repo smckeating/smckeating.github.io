@@ -38,7 +38,7 @@
       <h2>Patient</h2>
       <ul class="vertical-list">
         <li>Name: {{ patientData ? patientData.name : '' }}</li>
-        <li>Age: {{ patientData ? patientData.birthDate : '' }}</li>
+        <li>Age: {{ patientData ? calculateAge(patientData.birthDate) : '' }}</li>
         <li>Gender: {{ patientData ? patientData.gender : '' }}</li>
         <li>Height: {{ demographics.height }}</li>
         <li>Weight: {{ demographics.weight }}</li>
@@ -126,7 +126,18 @@ new Vue({
           this.error = true;
       });
   }
-
+methods: {
+    calculateAge(birthDate) {
+        const today = new Date();
+        const dob = new Date(birthDate);
+        let age = today.getFullYear() - dob.getFullYear();
+        const diffMonths = today.getMonth() - dob.getMonth();
+        if (diffMonths < 0 || (diffMonths === 0 && today.getDate() < dob.getDate())) {
+            age = age - 1;
+        }
+        return age;
+    }
+}
 });
 </script>
 

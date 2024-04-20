@@ -49,27 +49,19 @@
     <div v-if="currentTab === 'Problems'">
       <h2>Problems</h2>
       <ul class="vertical-list">
-        <li>Problems: {{ problems.problem }}</li>
-        <li>Onset Date: {{ problems.onsetDate }}</li>
         <li>Problem list: {{ problems }}</li>
       </ul>
     </div>
     <div v-if="currentTab === 'Medications'">
       <h2>Medications</h2>
       <ul class="vertical-list">
-        <li>Medication: {{ medications.med }}</li>
-        <li>Dose: {{ medications.dose }}</li>
+        <li>Medication list: {{ medications }}</li>
       </ul>
     </div>
     <div v-if="currentTab === 'Vitals'">
       <h2>Vitals</h2>
       <ul class="vertical-list">
-        <li>Date: {{ vitals.date }}</li>
-        <li>Pulse: {{ vitals.pulse }}</li>
-        <li>Blood Pressure: {{ vitals.bp }}</li>
-        <li>Respiratory Rate: {{ vitals.resp }}</li>
-        <li>Temperature: {{ vitals.temp }}</li>
-        <li>SpO2: {{ vitals.spo2 }}</li>
+        <li>Vitals list: {{ vitals }}</li>
       </ul>
     </div>
     <div v-if="error">

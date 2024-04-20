@@ -49,6 +49,7 @@
             <p>Reaction: {{ allergy.reaction.map(reaction => reaction.manifestation[0].coding[0].display).join(', ') }}</p>
             <p>Last Occurrence: {{ allergy.lastOccurrence }}</p>
             <p>Severity: {{ allergy.severity }}</p>
+        </li>
         <li>{{ patientData }}</li>
         <li>{{ allergies }}</li>
       </ul>

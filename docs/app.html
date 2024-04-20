@@ -33,7 +33,10 @@
     <button @click="currentTab = 'Vitals'">Vitals</button>
   </nav>
   </div>
-  <div class="content" v-if="!loading">
+  <div class="content" v-if="error">
+    <p>Please (re)launch the app by clicking <a :href="homePageUrl">here</a>.</p>  
+  </div>
+  <div v-else-if="!loading">
     <div v-if="currentTab === 'Patient'">
       <h2>Patient</h2>
       <ul class="vertical-list">
@@ -64,9 +67,6 @@
       <ul class="vertical-list">
         <li>Vitals list: {{ vitals }}</li>
       </ul>
-    </div>
-    <div v-if="error">
-      <p>Please (re)launch the app by clicking <a :href="homePageUrl">here</a>.</p>  
     </div>
   </div>
   <div v-else>

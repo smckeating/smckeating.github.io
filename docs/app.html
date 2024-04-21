@@ -46,7 +46,12 @@
         <li>Weight: {{ patientWeight }}</li>
         <li>Language: {{ patientData && patientData.communication ? patientData.communication.find(lang => lang.preferred === true).language.coding[0].display : ''  }}</li>
         <li>Allergies:</li>
-        <li>{{ allergies }}</li>
+        <li>{{ allergies.code }}</li>
+        <ul class="vertical-list">
+            <li v-for="allergy in allergies" :key="allergy.id">
+                Allergy: {{ allergy.code }}
+              </li>
+          </ul>
       </ul>
     </div>
     <div v-if="currentTab === 'Problems'">

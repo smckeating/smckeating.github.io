@@ -124,7 +124,8 @@ new Vue({
         this.allergies = allergies.entry.map(entry => entry.resource).filter(resource => resource !== null && resource.resourceType !== "OperationOutcome");
         this.problems = conditions.entry.map(entry => entry.resource).filter(resource => resource !== null && resource.resourceType !== "OperationOutcome");
         this.medications = medications.entry.map(entry => entry.resource).filter(resource => resource !== null && resource.resourceType !== "OperationOutcome");
-        this.vitals = observations.entry.map(entry => entry.resource).filter(resource => resource !== null && resource.resourceType !== "OperationOutcome");
+        this.vitals = observations.entry.map(entry => entry.resource).filter(resource => resource !== null && resource.resourceType !== "OperationOutcome")
+                      .sort((a, b) => new Date(b.effectiveDateTime) - new Date(a.effectiveDateTime));
         this.patientWeight = patientWeight.entry.length > 0 ? patientWeight.entry[0].resource.valueQuantity.value + ' ' + patientWeight.entry[0].resource.valueQuantity.unit : 'Unknown';
         this.loading = false;
       })

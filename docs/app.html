@@ -151,13 +151,20 @@ methods: {
         return age;
     },
     getRecentVitals() {
-        const sortedVitals = this.vitals.sort((a, b) => new Date(b.effectiveDateTime) - new Date(a.effectiveDateTime));
-        const recentDates = sortedVitals.slice(0, 5).map(vital => vital.effectiveDateTime.split('T')[0]);
         const groupedVitals = {};
-        recentDates.forEach(date => {
-            groupedVitals[date] = sortedVitals.filter(vital => vital.effectiveDateTime.split('T')[0] === date);
+        this.vitals.forEach(vital => {
+            const date = vital.effectiveDateTime.split('T')[0];
+            if (!groupedVitals[date]) {
+                groupedVitals[date] = [];
+            }
+            groupedVitals[date].push(vital);
         });
-        return groupedVitals;
+        const recentDates = Object.keys(groupedVitals).sort((a, b) => new Date(b) - new Date(a)).slice(0, 3);
+        const recentVitals = {};
+        recentDates.forEach(date => {
+            recentVitals[date] = groupedVitals[date];
+        });
+        return recentVitals;
     }
 }
 });

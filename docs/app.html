@@ -104,7 +104,7 @@ new Vue({
             client.request(`AllergyIntolerance?patient=${client.patient.id}`),
             client.request(`Condition?patient=${client.patient.id}`),
             client.request(`MedicationRequest?patient=${client.patient.id}`),
-            client.request(`Observation?patient=${client.patient.id}`),
+            client.request(`Observation?patient=${client.patient.id}&category=vital-signs`),
         ]);
       })
       .then(([patientData, allergies, conditions, medications, observations]) => {

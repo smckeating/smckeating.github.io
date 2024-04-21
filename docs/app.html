@@ -49,7 +49,7 @@
         <li>{{ allergies.code }}</li>
         <ul class="vertical-list">
             <li v-for="allergy in allergies" :key="allergy.id">
-                Allergy: {{ allergy }}
+                Allergy: {{ allergy.text }}
               </li>
           </ul>
       </ul>
@@ -122,9 +122,9 @@ new Vue({
       .then(([patientData, allergies, conditions, medications, observations, patientWeight]) => {
         this.patientData = patientData;
         this.allergies = allergies.entry.map(entry => entry.resource).filter(resource => resource !== null && resource.resourceType !== "OperationOutcome");
-        this.problems = conditions.entry.map(entry => entry.resource);
-        this.medications = medications.entry.map(entry => entry.resource);
-        this.vitals = observations.entry.map(entry => entry.resource);
+        this.problems = conditions.entry.map(entry => entry.resource).filter(resource => resource !== null && resource.resourceType !== "OperationOutcome");
+        this.medications = medications.entry.map(entry => entry.resource).filter(resource => resource !== null && resource.resourceType !== "OperationOutcome");
+        this.vitals = observations.entry.map(entry => entry.resource).filter(resource => resource !== null && resource.resourceType !== "OperationOutcome");
         this.patientWeight = patientWeight.entry.length > 0 ? patientWeight.entry[0].resource.valueQuantity.value + ' ' + patientWeight.entry[0].resource.valueQuantity.unit : 'Unknown';
         this.loading = false;
       })

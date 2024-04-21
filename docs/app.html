@@ -78,7 +78,8 @@
         <h3>{{ date }}</h3>
         <ul class="vertical-list">
             <li v-for="vital in vitals" :key="vital.id">
-                Vitals: {{ vital }}
+                <span class="bullet">&#8226;</span>
+                {{ vital }}
             </li>
         </ul>
     </div>
@@ -98,14 +99,7 @@ new Vue({
     loading: true,
     error: false,
     homePageUrl: 'https://smckeating.github.io/index.html',
-    demographics: {
-      height: '6\'0"',
-      weight: '180 lbs',
-      allergies: 'Peanuts, Pollen',
-      language: 'English'
-    },
     patientData: null,
-    patientHeight: null,
     patientWeight: null,
     allergies: [],
     problems: [],

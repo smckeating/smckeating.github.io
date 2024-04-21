@@ -67,7 +67,7 @@
       <li>{{ medications }}</li>
       <ul class="vertical-list">
         <li v-for="medication in medications" :key="medication.id">
-            Medication: {{ getMedicationDetails(medication) }}
+            Medication: {{ medication ? medication.medicationReference }}
         </li>
       </ul>
     </div>
@@ -147,17 +147,6 @@ methods: {
             age = age - 1;
         }
         return age;
-    },
-    async getMedicationDetails(medicationReference) {
-        try {
-            const reference = medicationReference.medication;
-            const medicationDetails = await this.$fhirclient.request(reference);
-            const medicationName = medicationResource.code.text;
-            return medicationName;
-        } catch (error) {
-            console.error("Error fetching medication details:", error);
-            return 'Unknown';
-        }
     }
 }
 });

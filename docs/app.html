@@ -64,10 +64,9 @@
     </div>
     <div v-if="currentTab === 'Medications'">
       <h2>Medications</h2>
-      <li>{{ medications }}</li>
       <ul class="vertical-list">
         <li v-for="medication in medications" :key="medication.id">
-            <li>Medication: {{ medication.medicationReference.display }}</li>
+            Medication: {{ medication.medicationReference.display }}
         </li>
       </ul>
     </div>

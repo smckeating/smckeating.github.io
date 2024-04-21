@@ -45,9 +45,9 @@
         <li>Gender: {{ patientData ? patientData.gender : '' }}</li>
         <li>Height: {{ demographics.height }}</li>
         <li>Weight: {{ demographics.weight }}</li>
-        <li>Allergies: {{ demographics.allergies }}</li>
         <li>Language: {{ patientData && patientData.communication ? patientData.communication.find(lang => lang.preferred === true).language.coding[0].display : ''  }}</li>
-        <li>{{ patientData }}</li>
+        <li>Allergies:</li>
+        <li>{{ allergies ?  allergies.code.text : 'None known'}}</li>
         <li>{{ allergies }}</li>
       </ul>
     </div>
@@ -94,6 +94,8 @@ new Vue({
       language: 'English'
     },
     patientData: null,
+    patientHeight: null,
+    patientWeight: null,
     allergies: [],
     problems: [],
     medications: [],
@@ -107,7 +109,9 @@ new Vue({
             client.request(`AllergyIntolerance?patient=${client.patient.id}`),
             client.request(`Condition?patient=${client.patient.id}`),
             client.request(`MedicationRequest?patient=${client.patient.id}`),
-            client.request(`Observation?patient=${client.patient.id}&category=vital-signs`)
+            client.request(`Observation?patient=${client.patient.id}&category=vital-signs`),
+            client.request(`Observation?patient=${client.patient.id}&code=http://loinc.org|8302-2&_sort=-date&_count=1`),
+            client.request(`Observation?patient=${client.patient.id}&code=http://loinc.org|29463-7&_sort=-date&_count=1`),
         ]);
       })
       .then(([patientData, allergies, conditions, medications, observations]) => {
@@ -116,6 +120,8 @@ new Vue({
         this.problems = conditions.entry.map(entry => entry.resource);
         this.medications = medications.entry.map(entry => entry.resource);
         this.vitals = observations.entry.map(entry => entry.resource);
+        this.patientHeight = patientHeight;
+        this.patientWeight = patientWeight;
         this.loading = false;
       })
       .catch(error => {

@@ -17,3 +17,6 @@ section {
     border: 1px solid #ccc;
     padding: 10px;
 }
+.indented {
+    padding-left: 20px; /* Adjust the value as needed */
+  }

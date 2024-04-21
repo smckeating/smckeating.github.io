@@ -45,7 +45,7 @@
         <li>Gender: {{ patientData ? patientData.gender : '' }}</li>
         <li>Language: {{ patientData && patientData.communication ? patientData.communication.find(lang => lang.preferred === true).language.coding[0].display : ''  }}</li>
         <li>Allergies:</li>
-        <li>{{ allergies ?  allergies.code.text : 'None known'}}</li>
+        <li>{{ allergies ?  allergies.code.text : 'None known' }}</li>
         <li>{{ allergies }}</li>
       </ul>
     </div>
@@ -112,7 +112,7 @@ new Vue({
             client.request(`Observation?patient=${client.patient.id}&code=http://loinc.org|29463-7&_sort=-date&_count=1`),
         ]);
       })
-      .then(([patientData, allergies, conditions, medications, observations]) => {
+      .then(([patientData, allergies, conditions, medications, observations, patientHeight, patientWeight]) => {
         this.patientData = patientData;
         this.allergies = allergies.entry.map(entry => entry.resource);
         this.problems = conditions.entry.map(entry => entry.resource);

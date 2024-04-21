@@ -73,12 +73,14 @@
       </ul>
     </div>
     <div v-if="currentTab === 'Vitals'">
-      <h2>Vitals</h2>
-      <ul class="vertical-list">
-        <li v-for="vital in vitals" :key="vital.id">
-            Vitals: {{ vital }}
-        </li>
-      </ul>
+      <h2>Most Recent Vitals</h2>
+      <div v-for="(vitals, date) in getRecentVitals()" :key="date">
+        <h3>{{ date }}</h3>
+        <ul class="vertical-list">
+            <li v-for="vital in vitals" :key="vital.id">
+                Vitals: {{ vital }}
+            </li>
+        </ul>
     </div>
   </div>
   <div v-else>
@@ -127,8 +129,7 @@ new Vue({
         this.problems = conditions.entry.map(entry => entry.resource).filter(resource => resource !== null && resource.resourceType !== "OperationOutcome");
         this.medications = medications.entry.map(entry => entry.resource).filter(resource => resource !== null && resource.resourceType !== "OperationOutcome");
         this.vitals = observations.entry.map(entry => entry.resource).filter(resource => resource !== null && resource.resourceType !== "OperationOutcome")
-                      .sort((a, b) => new Date(b.effectiveDateTime) - new Date(a.effectiveDateTime))
-                      .slice(0, 5);
+                      .sort((a, b) => new Date(b.effectiveDateTime) - new Date(a.effectiveDateTime));
         this.patientWeight = patientWeight.entry.length > 0 ? patientWeight.entry[0].resource.valueQuantity.value + ' ' + patientWeight.entry[0].resource.valueQuantity.unit : 'Unknown';
         this.loading = false;
       })
@@ -148,6 +149,16 @@ methods: {
             age = age - 1;
         }
         return age;
+    },
+    getRecentVitals() {
+        const validVitals = this.vitals.filter(resource => resource !== null && resource.resourceType !== "OperationOutcome");
+        const sortedVitals = validVitals.sort((a, b) => new Date(b.effectiveDateTime) - new Date(a.effectiveDateTime));
+        const recentDates = sortedVitals.slice(0, 5).map(vital => vital.effectiveDateTime.split('T')[0]);
+        const groupedVitals = {};
+        recentDates.forEach(date => {
+            groupedVitals[date] = sortedVitals.filter(vital => vital.effectiveDateTime.split('T')[0] === date);
+        });
+        return groupedVitals;
     }
 }
 });

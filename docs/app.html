@@ -107,19 +107,15 @@ new Vue({
             client.request(`AllergyIntolerance?patient=${client.patient.id}`),
             client.request(`Condition?patient=${client.patient.id}`),
             client.request(`MedicationRequest?patient=${client.patient.id}`),
-            client.request(`Observation?patient=${client.patient.id}&category=vital-signs`),
-            client.request(`Observation?patient=${client.patient.id}&code=http://loinc.org|8302-2`),
-            client.request(`Observation?patient=${client.patient.id}&code=http://loinc.org|29463-7&_sort=-date&_count=1`),
+            client.request(`Observation?patient=${client.patient.id}`),
         ]);
       })
-      .then(([patientData, allergies, conditions, medications, observations, patientHeight, patientWeight]) => {
+      .then(([patientData, allergies, conditions, medications, observations]) => {
         this.patientData = patientData;
         this.allergies = allergies.entry.map(entry => entry.resource);
         this.problems = conditions.entry.map(entry => entry.resource);
         this.medications = medications.entry.map(entry => entry.resource);
         this.vitals = observations.entry.map(entry => entry.resource);
-        this.patientHeight = patientHeight;
-        this.patientWeight = patientWeight;
         this.loading = false;
       })
       .catch(error => {

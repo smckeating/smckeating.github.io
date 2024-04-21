@@ -117,7 +117,7 @@ new Vue({
       })
       .then(([patientData, allergies, conditions, medications, observations, patientWeight]) => {
         this.patientData = patientData;
-        this.allergies = allergies.entry.map(entry => entry.resource);
+        this.allergies = allergies.entry.map(entry => entry.resource).filter(resource => resource !== null);
         this.problems = conditions.entry.map(entry => entry.resource);
         this.medications = medications.entry.map(entry => entry.resource);
         this.vitals = observations.entry.map(entry => entry.resource);

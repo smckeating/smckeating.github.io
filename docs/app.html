@@ -45,7 +45,6 @@
         <li>Gender: {{ patientData ? patientData.gender : '' }}</li>
         <li>Language: {{ patientData && patientData.communication ? patientData.communication.find(lang => lang.preferred === true).language.coding[0].display : ''  }}</li>
         <li>Allergies:</li>
-        <li>{{ allergies ?  allergies.code.text : 'None known' }}</li>
         <li>{{ allergies }}</li>
       </ul>
     </div>

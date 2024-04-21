@@ -64,6 +64,7 @@
     </div>
     <div v-if="currentTab === 'Medications'">
       <h2>Medications</h2>
+      <li>medications</li>
       <ul class="vertical-list">
         <li v-for="medication in medications" :key="medication.id">
             Medication: {{ getMedicationDetails(medication) }}
@@ -149,7 +150,7 @@ methods: {
     },
     async getMedicationDetails(medicationReference) {
         try {
-            const reference = medicationReference.reference;
+            const reference = medicationReference.medication;
             const medicationDetails = await this.$fhirclient.request(reference);
             const medicationName = medicationResource.code.text;
             return medicationName;

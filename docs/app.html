@@ -58,20 +58,24 @@
       <h2>Problems</h2>
       <ul class="vertical-list">
         <li v-for="problem in problems" :key="problem.id">
-            Problem code: {{ problem.code }}
+            Problem: {{ problem }}
           </li>
       </ul>
     </div>
     <div v-if="currentTab === 'Medications'">
       <h2>Medications</h2>
       <ul class="vertical-list">
-        <li>Medication list: {{ medications }}</li>
+        <li v-for="medication in medications" :key="medication.id">
+            Medication: {{ medication }}
+        </li>
       </ul>
     </div>
     <div v-if="currentTab === 'Vitals'">
       <h2>Vitals</h2>
       <ul class="vertical-list">
-        <li>Vitals list: {{ vitals }}</li>
+        <li v-for="vital in vitals" :key="vital.id">
+            Vitals: {{ vital }}
+        </li>
       </ul>
     </div>
   </div>

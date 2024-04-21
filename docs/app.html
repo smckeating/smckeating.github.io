@@ -48,7 +48,7 @@
         <li>Allergies: {{ demographics.allergies }}</li>
         <li>Language: {{ patientData && patientData.communication ? patientData.communication.find(lang => lang.preferred === true).language.coding[0].display : ''  }}</li>
         <li>{{ patientData }}</li>
-        <li>{{ parseAllergies(allergies) }}</li>
+        <li>{{ allergies }}</li>
       </ul>
     </div>
     <div v-if="currentTab === 'Problems'">
@@ -134,12 +134,7 @@ methods: {
             age = age - 1;
         }
         return age;
-    },
-    parseAllergies(allergies) {
-    return allergies
-      .filter(allergy => allergy.substance && allergy.substance.text)
-      .map(allergy => allergy.substance.text);
-  }
+    }
 }
 });
 </script>

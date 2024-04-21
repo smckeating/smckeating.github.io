@@ -67,7 +67,7 @@
       <li>{{ medications }}</li>
       <ul class="vertical-list">
         <li v-for="medication in medications" :key="medication.id">
-            Medication: {{ medication.medicationReference.display }}
+            <li>Medication: {{ medication.medicationReference.display }}</li>
         </li>
       </ul>
     </div>

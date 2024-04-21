@@ -66,7 +66,7 @@
       <h2>Medications</h2>
       <ul class="vertical-list">
         <li v-for="medication in medications" :key="medication.id">
-            Medication: {{ getMedicationDetails(medication.reference) }}
+            Medication: {{ getMedicationDetails(medication) }}
         </li>
       </ul>
     </div>
@@ -149,8 +149,10 @@ methods: {
     },
     async getMedicationDetails(medicationReference) {
         try {
-            const medicationDetails = await this.$fhirclient.request(medicationReference.reference);
-            return medication ? medication.code.text : 'Unknown';
+            const reference = medicationReference.reference;
+            const medicationDetails = await this.$fhirclient.request(reference);
+            const medicationName = medicationResource.code.text;
+            return medicationName;
         } catch (error) {
             console.error("Error fetching medication details:", error);
             return 'Unknown';

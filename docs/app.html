@@ -52,7 +52,9 @@
     <div v-if="currentTab === 'Problems'">
       <h2>Problems</h2>
       <ul class="vertical-list">
-        <li>Problem list: {{ problems }}</li>
+        <li v-for="problem in problems" :key="problem.id">
+            Problem code: {{ problem.code.text }}
+          </li>
       </ul>
     </div>
     <div v-if="currentTab === 'Medications'">

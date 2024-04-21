@@ -43,7 +43,7 @@
         <li>Name: {{ patientData ? patientData.name.find(name => name.use === 'official').text : '' }}</li>
         <li>Age: {{ patientData ? calculateAge(patientData.birthDate) : '' }}</li>
         <li>Gender: {{ patientData ? patientData.gender : '' }}</li>
-        <li>{{ patientWeight }}</li>
+        <li>Weight: {{ patientWeight }}</li>
         <li>Language: {{ patientData && patientData.communication ? patientData.communication.find(lang => lang.preferred === true).language.coding[0].display : ''  }}</li>
         <li>Allergies:</li>
         <li>{{ allergies }}</li>

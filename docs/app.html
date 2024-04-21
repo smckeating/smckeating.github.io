@@ -151,8 +151,7 @@ methods: {
         return age;
     },
     getRecentVitals() {
-        const validVitals = this.vitals.filter(resource => resource !== null && resource.resourceType !== "OperationOutcome");
-        const sortedVitals = validVitals.sort((a, b) => new Date(b.effectiveDateTime) - new Date(a.effectiveDateTime));
+        const sortedVitals = this.vitals.validVitals.sort((a, b) => new Date(b.effectiveDateTime) - new Date(a.effectiveDateTime));
         const recentDates = sortedVitals.slice(0, 5).map(vital => vital.effectiveDateTime.split('T')[0]);
         const groupedVitals = {};
         recentDates.forEach(date => {

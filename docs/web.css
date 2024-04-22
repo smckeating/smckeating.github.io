@@ -20,3 +20,13 @@ section {
 .indented {
     padding-left: 20px; /* Adjust the value as needed */
   }
+.vertical-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.vertical-list li {
+  margin-bottom: 10px; /* Increase the margin bottom */
+  font-size: 18px; /* Increase the font size */
+  line-height: 1.5; /* Adjust the line height */
+}

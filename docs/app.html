@@ -154,7 +154,7 @@ methods: {
             }
             groupedVitals[date].push(vital);
         });
-        const recentDates = Object.keys(groupedVitals).sort((a, b) => new Date(b) - new Date(a)).slice(0, 1);
+        const recentDates = Object.keys(groupedVitals).sort((a, b) => new Date(b) - new Date(a)).slice(0, 3);
         const recentVitals = {};
         recentDates.forEach(date => {
             recentVitals[date] = groupedVitals[date];
@@ -165,12 +165,9 @@ methods: {
         if (vital.code && vital.code.text === 'Blood Pressure' && vital.component.length >= 2) {
             const systolic = vital.component[0].valueQuantity.value;
             const diastolic = vital.component[1].valueQuantity.value;
-            return {
-              Systolic: systolic,
-              Diastolic: diastolic
-            };
+            return (vital.code.text + ': ' + systolic + '/' + diastolic);
         } else if (vital.valueQuantity) {
-            return vital.valueQuantity.value;
+            return (vital.code.text + vital.valueQuantity.value);
         } else {
             return 'Unknown';
         }

@@ -148,7 +148,7 @@ methods: {
     getRecentVitals() {
         const groupedVitals = {};
         this.vitals.forEach(vital => {
-            const date = vital.effectiveDateTime;
+            const date = vital.effectiveDateTime.split('T')[0];
             if (!groupedVitals[date]) {
                 groupedVitals[date] = [];
             }
@@ -165,9 +165,9 @@ methods: {
         if (vital.code && vital.code.text === 'Blood Pressure' && vital.component.length >= 2) {
             const systolic = vital.component[0].valueQuantity.value;
             const diastolic = vital.component[1].valueQuantity.value;
-            return (vital.code.text + ': ' + systolic + '/' + diastolic);
+            return (vital.effectiveDateTime + ' - ' + vital.code.text + ': ' + systolic + '/' + diastolic);
         } else if (vital.valueQuantity) {
-            return (vital.code.text + ': ' + vital.valueQuantity.value);
+            return (vital.effectiveDateTime + ' - ' + vital.code.text + ': ' + vital.valueQuantity.value);
         } else {
             return 'Unknown';
         }

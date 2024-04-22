@@ -78,6 +78,7 @@
         <h3>{{ date }}</h3>
         <ul class="vertical-list">
             <li v-for="vital in vitals" :key="vital.id">
+                <span class="bullet">&#8226;</span>
                 {{ vital }}
             </li>
         </ul>
@@ -159,6 +160,19 @@ methods: {
             recentVitals[date] = groupedVitals[date];
         });
         return recentVitals;
+    },
+    getVitalValues(vital) {
+        if (vital.component) {
+            const vitalComponentValues = [];
+            vital.component.forEach(component => {
+                if component.value {
+                    vitalComponentValues.push(component.value);
+                }
+            });
+            return vitalComponentValues;
+        } else {
+            return vital.value;
+        }
     }
 }
 });

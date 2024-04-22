@@ -154,7 +154,7 @@ methods: {
             }
             groupedVitals[date].push(vital);
         });
-        const recentDates = Object.keys(groupedVitals).sort((a, b) => new Date(b) - new Date(a)).slice(0, 3);
+        const recentDates = Object.keys(groupedVitals).sort((a, b) => new Date(b) - new Date(a)).slice(0, 5);
         const recentVitals = {};
         recentDates.forEach(date => {
             recentVitals[date] = groupedVitals[date];

@@ -162,16 +162,10 @@ methods: {
         return recentVitals;
     },
     getVitalValues(vital) {
-        if (vital.component) {
-            const vitalComponentValues = [];
-            vital.component.forEach(component => {
-                if component.value {
-                    vitalComponentValues.push(component.value);
-                }
-            });
-            return vitalComponentValues;
+        if (vital.display === 'Blood Pressure'){
+            vital.display + ': ' + vital.component[0].valueQuantity.value + ' / ' + vital.component[1].valueQuantity.value;
         } else {
-            return vital.value;
+            vital.display + ': ' + vital.valueQuantity.value;
         }
     }
 }

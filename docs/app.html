@@ -162,10 +162,17 @@ methods: {
         return recentVitals;
     },
     getVitalValues(vital) {
-        if (vital.display === 'Blood Pressure' && vital.component && vital.component.length >= 2){
-            return vital + ' ' + vital.display + ': ' + vital.component[0].valueQuantity.value + ' / ' + vital.component[1].valueQuantity.value;
+        if (vital.code && vital.code.text === 'Blood Pressure' && vital.component.length >= 2) {
+            const systolic = vital.component[0].valueQuantity.value;
+            const diastolic = vital.component[1].valueQuantity.value;
+            return {
+              Systolic: systolic,
+              Diastolic: diastolic
+            };
+        } else if (vital.valueQuantity) {
+            return vital.valueQuantity.value;
         } else {
-            return vital + ' ' + vital.display + ': ' + vital.valueQuantity;
+            return 'Unknown';
         }
     }
 }

@@ -163,9 +163,9 @@ methods: {
     },
     getVitalValues(vital) {
         if (vital.display === 'Blood Pressure'){
-            vital.display + ': ' + vital.component[0].valueQuantity.value + ' / ' + vital.component[1].valueQuantity.value;
+            return vital.display + ': ' + vital.component[0].valueQuantity.value + ' / ' + vital.component[1].valueQuantity.value;
         } else {
-            vital.display + ': ' + vital.valueQuantity.value;
+            return vital.display + ': ' + vital.valueQuantity.value;
         }
     }
 }

@@ -148,7 +148,7 @@ methods: {
     getRecentVitals() {
         const groupedVitals = {};
         this.vitals.forEach(vital => {
-            const date = vital.effectiveDateTime.split;
+            const date = vital.effectiveDateTime;
             if (!groupedVitals[date]) {
                 groupedVitals[date] = [];
             }

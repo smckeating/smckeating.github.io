@@ -167,7 +167,7 @@ methods: {
             const diastolic = vital.component[1].valueQuantity.value;
             return (vital.code.text + ': ' + systolic + '/' + diastolic);
         } else if (vital.valueQuantity) {
-            return (vital.code.text + vital.valueQuantity.value);
+            return (vital.code.text + ': ' + vital.valueQuantity.value);
         } else {
             return 'Unknown';
         }

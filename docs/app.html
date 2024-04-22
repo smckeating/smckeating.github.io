@@ -75,7 +75,7 @@
     <div v-if="currentTab === 'Vitals'">
       <h2>Most Recent Vitals</h2>
       <div v-for="(vitals, date) in getRecentVitals()" :key="date">
-        <h3>{{ formatDateTime(date) }}</h3>
+        <h3>{{ date }}</h3>
         <ul class="vertical-list">
             <li v-for="vital in vitals" :key="vital.id">
                 <span class="bullet">&#8226;</span>
@@ -173,7 +173,7 @@ methods: {
         }
     },
     formatDateTime(date) {
-      return (date.toLocaleDateString() + ' at ' + date.to.toLocaleTimeString());
+      return date.toLocaleDateString() + ' ' + date.to.toLocaleTimeString();
     }
 }
 });
